@@ -233,9 +233,10 @@ if __name__ == "__main__":
 
     handler = ProxyFTPHandler
     handler.authorizer = authorizer
-    handler.passive_ports = (  # pyright: ignore[reportAttributeAccessIssue]
-        range(int(os.getenv("PASV_MIN", "41000")), int(os.getenv("PASV_MAX", "41011"))),
+    handler.passive_ports = range(  # pyright: ignore[reportAttributeAccessIssue]
+        int(os.getenv("PASV_MIN", "41000")), int(os.getenv("PASV_MAX", "41011"))
     )
+
     handler.masquerade_address = os.getenv("PUBLIC_IP")  # pyright: ignore[reportAttributeAccessIssue]
 
     print("FTP Proxy starting...")
